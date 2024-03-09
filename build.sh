@@ -23,9 +23,9 @@ esac
 if [ "$architecture" == "arm" ]; then
     buildEnv="GOARCH=$architecture GOARM=$goarm"
 else
-    buildEnv="GOARCH=$architecture go build"
+    buildEnv="GOARCH=$architecture"
 fi
 
-buildCommand="$buildEnv go build -o proxy"
+buildCommand="CGO_ENABLED=0  $buildEnv go build -o proxy"
 
 eval $buildCommand
